@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # See github page to report issues or to contribute:
 # https://github.com/Arthaey/anki-rebuild-all
+#
+# Also available for Anki at https://ankiweb.net/shared/info/1639597619
 
 import re
 from anki.hooks import wrap
