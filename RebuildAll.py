@@ -14,7 +14,7 @@ def _rebuildAll(self, url):
         dynDeckIds = [ d["id"] for d in mw.col.decks.all() if d["dyn"] ]
         mw.checkpoint("rebuild {0} decks".format(len(dynDeckIds)))
         mw.progress.start()
-        [ mw.col.sched.rebuildDyn(did) for did in dynDeckIds ]
+        [ mw.col.sched.rebuildDyn(did) for did in sorted(dynDeckIds) ]
         mw.progress.finish()
         mw.reset()
 
