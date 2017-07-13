@@ -2,8 +2,8 @@
 
 **Anki download ID: `1639597619`**
 
-An Anki add-on that adds a "Rebuild All" button to the bottom of the main screen,
-to rebuild all filtered decks at once.
+An Anki add-on that adds "Rebuild All" and "Empty All" buttons to the bottom of
+the main screen, to rebuild or empty all filtered decks at once.
 
 # Support
 
