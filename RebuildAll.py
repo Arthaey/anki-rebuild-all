@@ -36,7 +36,8 @@ def _updateFilteredDecks(actionFuncName):
 
 
 def _handleFilteredDeckButtons(self, url):
-    _updateFilteredDecks(url)
+    if url in ["rebuildDyn", "emptyDyn"]:
+        _updateFilteredDecks(url)
 
 
 def _addButtons(self):
