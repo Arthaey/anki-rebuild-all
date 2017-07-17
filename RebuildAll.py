@@ -52,8 +52,8 @@ def _addButtons(self):
         newHtml += "<button title='{0}' onclick='py.link(\"{1}\");'>{0}</button>".format(*newButton)
 
     html = self.bottom.web.page().mainFrame().toHtml()
-    html = re.sub("</button></td>", u"</button>{0}</td>".format(newHtml), html)
-    self.bottom.draw(html)
+    buttons = re.findall('<button.+</button>', html)
+    self.bottom.draw(''.join(buttons) + newHtml)  
 
 
 DeckBrowser._drawButtons = wrap(DeckBrowser._drawButtons, _addButtons, "after")
