@@ -41,20 +41,15 @@ def _handleFilteredDeckButtons(self, url):
 
 
 def _addButtons(self):
-    # There's no clean way to add a button, so hack it in. :(
-    newHtml = ""
-    newButtons = [
-        [_("Rebuild All"), "rebuildDyn"],
-        [_("Empty All"),   "emptyDyn"],
+    #don't duplicate buttons every render
+    for b in self.drawLinks:
+            if b[1] == "rebuildDyn":
+                return
+
+    self.drawLinks += [
+            ["", "rebuildDyn", _("Rebuild All")],
+            ["", "emptyDyn", _("Empty All")]
     ]
 
-    for newButton in newButtons:
-        newHtml += "<button title='{0}' onclick='py.link(\"{1}\");'>{0}</button>".format(*newButton)
-
-    html = self.bottom.web.page().mainFrame().toHtml()
-    buttons = re.findall('<button.+</button>', html)
-    self.bottom.draw(''.join(buttons) + newHtml)  
-
-
-DeckBrowser._drawButtons = wrap(DeckBrowser._drawButtons, _addButtons, "after")
+DeckBrowser._drawButtons = wrap(DeckBrowser._drawButtons, _addButtons, "before")
 DeckBrowser._linkHandler = wrap(DeckBrowser._linkHandler, _handleFilteredDeckButtons, "after")
