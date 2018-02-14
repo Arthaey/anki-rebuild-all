@@ -41,15 +41,13 @@ def _handleFilteredDeckButtons(self, url):
 
 
 def _addButtons(self):
-    #don't duplicate buttons every render
-    for b in self.drawLinks:
-            if b[1] == "rebuildDyn":
-                return
-
-    self.drawLinks += [
-            ["", "rebuildDyn", _("Rebuild All")],
-            ["", "emptyDyn", _("Empty All")]
+    drawLinks = [
+        ["", "rebuildDyn", _("Rebuild All")],
+        ["", "emptyDyn", _("Empty All")]
     ]
+    # don't duplicate buttons every click
+    if drawLinks[0] not in self.drawLinks:
+        self.drawLinks += drawLinks
 
 DeckBrowser._drawButtons = wrap(DeckBrowser._drawButtons, _addButtons, "before")
 DeckBrowser._linkHandler = wrap(DeckBrowser._linkHandler, _handleFilteredDeckButtons, "after")
