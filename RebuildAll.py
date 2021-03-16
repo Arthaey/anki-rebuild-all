@@ -16,7 +16,7 @@ from aqt.utils import tooltip
 
 
 def _updateFilteredDecks(actionFuncName):
-    dynDeckIds = [ d["id"] for d in mw.col.decks.all() if d["dyn"] ]
+    dynDeckIds = [ d["id"] for d in sorted(mw.col.decks.all(),key=lambda d:d["name"]) if d["dyn"] ]
     count = len(dynDeckIds)
 
     if not count:
@@ -28,7 +28,7 @@ def _updateFilteredDecks(actionFuncName):
 
     mw.checkpoint("{0} {1} filtered decks".format(actionFuncName, count))
     mw.progress.start()
-    [ actionFunc(did) for did in sorted(dynDeckIds) ]
+    [ actionFunc(did) for did in dynDeckIds ]
     mw.progress.finish()
     tooltip("Updated {0} filtered decks.".format(count))
 
